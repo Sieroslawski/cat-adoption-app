@@ -2,5 +2,16 @@
 @use '../utilities/mixins' as *;
 
 .header-wrapper {
-   
+    display: flex;
+    align-content: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  
+   li {
+    list-style-type: none;
+    display: inline;
+    padding: 20px;
+   }
 }

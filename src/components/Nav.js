@@ -7,9 +7,9 @@ function Nav() {
     <div className='header-wrapper'>
          <nav>
     <ul>    
-        <NavLink to="/" ><li>Home</li></NavLink>
-        <NavLink to="/about"><li>About Us</li></NavLink>
+        <NavLink to="/" ><li>Home</li></NavLink>       
         <NavLink to="/adoption"><li>Adoption</li></NavLink>
+        <NavLink to="/about"><li>About Us</li></NavLink>
     </ul>
     </nav>
     </div>
