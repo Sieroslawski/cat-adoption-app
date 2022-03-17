@@ -147,11 +147,13 @@
 //Custom mixins
 @mixin nav {
     display: flex;
-    align-content: stretch;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    background-color: #8540c5;
+    height: 8em;
+    align-content: center;
 }
 
 @mixin nav-hover {

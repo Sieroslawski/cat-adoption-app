@@ -21,11 +21,15 @@ function Nav() {
     <NavUnlisted>
     <nav>        
     <ul>
+        <div className='icon-and-name'>
         <FontAwesomeIcon icon={solid('shield-cat')} size="2x" className="cat-icon"/>
+        <li>Adopt Me-ow</li>
+        </div>
+        <div className='links'>
         <NavLink to="/" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Home</li></NavLink>       
         <NavLink to="/adoption" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Adoption</li></NavLink>
         <NavLink to="/about" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>About Us</li></NavLink>
-        <FontAwesomeIcon icon={solid('shield-cat')} size="2x" className="cat-icon"/>
+        </div>        
     </ul>
     </nav>
     </NavUnlisted>

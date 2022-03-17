@@ -9,10 +9,21 @@
    li {
     list-style-type: none;
     display: inline;
+    right: 0;    
     padding: 20px;
-    font-size: 30px;   
+    font-size: 30px;
+    color: $text-color-light;  
    }
-
+   .icon-and-name {
+    display: flex;   
+    left: 0;
+    display:inline;
+  }
+  .links {
+    position: fixed;
+    display:inline;
+    right: 0;
+  }
    .cat-icon {
        color: $text-color-light;
    }
@@ -28,5 +39,6 @@
   a:hover {
     @include nav-hover;
           
-  }           
+  }
+   
 }
