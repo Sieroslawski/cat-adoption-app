@@ -1,0 +1,46 @@
+@use "sass:math";
+
+// Colors
+$brand-color: #8540c5;
+$body-bg-color: #1b1a1a;
+$nav-color: #1d1d1d;
+$wrapper-bg-color: white;
+// Text Colors
+$text-color-dark: black;
+$text-color-light: white;
+
+// Use Color functions to brighten and darken colors
+$brand-color-dark: darken($brand-color, 20);
+$brand-color-light: lighten($brand-color, 20);
+
+// Fonts
+$body-font:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
+$heading-font:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
+$nav-font:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+sans-serif;
+// Typographic Defualts
+$line-height: 1.4;
+$heading-font-weight: 600;
+
+// Function to
+// Convert Px to Ems
+@function em($px, $bc: 16){
+    @return #{math.div($px, $bc)}em;
+}
+
+// Media Query Breakpoints
+$desktopMedium: em(1200);
+$tabletLandscape: em(1024);
+$tabletPortrait: em(750);
+$phoneLandscape: em(670);
+$smallPhone : em(470);
+$phonePortrait: em(420);
+
+
+// Utility variables
+$lps: '&:hover, &:focus, &:active';
