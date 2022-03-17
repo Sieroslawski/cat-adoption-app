@@ -143,3 +143,21 @@
         @content;
     }
 }
+
+//Custom mixins
+@mixin nav {
+    display: flex;
+    align-content: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@mixin nav-hover {
+    text-decoration: underline solid;
+    transition: text-decoration 2s ease-out;
+    text-decoration-thickness: 5px;      
+    color: $text-color-light;
+    transition: 300ms ease-out;
+}

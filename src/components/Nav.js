@@ -1,17 +1,34 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro'
+import styled from "styled-components";
+
+const NavUnlisted = styled.li`
+  .header-li {     
+    li {
+     text-decoration: underline;
+     text-decoration-thickness: 5px;     
+     color: white;  
+    }
+  }
+`;
 
 
 function Nav() {
   return (
     <div className='header-wrapper'>
-         <nav>
-    <ul>    
-        <NavLink to="/" ><li>Home</li></NavLink>       
-        <NavLink to="/adoption"><li>Adoption</li></NavLink>
-        <NavLink to="/about"><li>About Us</li></NavLink>
+    <NavUnlisted>
+    <nav>        
+    <ul>
+        <FontAwesomeIcon icon={solid('shield-cat')} size="2x" className="cat-icon"/>
+        <NavLink to="/" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Home</li></NavLink>       
+        <NavLink to="/adoption" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Adoption</li></NavLink>
+        <NavLink to="/about" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>About Us</li></NavLink>
+        <FontAwesomeIcon icon={solid('shield-cat')} size="2x" className="cat-icon"/>
     </ul>
     </nav>
+    </NavUnlisted>
     </div>
   )
 }

@@ -2,16 +2,31 @@
 @use '../utilities/mixins' as *;
 
 .header-wrapper {
-    display: flex;
-    align-content: stretch;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-  
+    @include nav;
+    background-color: $brand-color;
+    height: 8em;
+
    li {
     list-style-type: none;
     display: inline;
     padding: 20px;
+    font-size: 30px;   
    }
+
+   .cat-icon {
+       color: $text-color-light;
+   }
+
+   a:link {
+    text-decoration: $text-color-light;
+  }
+  
+  a:visited {
+    text-decoration: none;
+    color: $text-color-light;
+  }      
+  a:hover {
+    @include nav-hover;
+          
+  }           
 }
