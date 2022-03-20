@@ -5,6 +5,7 @@
     @include nav;
     background-color: $brand-color;
     height: 8em;
+    border-bottom: 1px solid black;
 
     ul {
       float: right;

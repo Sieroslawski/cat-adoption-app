@@ -1,12 +1,24 @@
 @use '../utilities/variables' as *;
 @use '../utilities/mixins' as *;
 
-.about-wrapper {
+.about-wrapper {    
+
+    #cat-img {
+        width: 100%;    
+        margin-top: 5em;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+
+    .paws {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 5em;
+    }
   
 }
 
-#cat-img {
-    width: 100%;    
-    margin-top: 10em;
-    
-}
