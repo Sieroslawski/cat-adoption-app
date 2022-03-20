@@ -145,15 +145,9 @@
 }
 
 //Custom mixins
-@mixin nav {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+@mixin nav {    
     background-color: #8540c5;
     height: 8em;
-    align-content: center;
 }
 
 @mixin nav-hover {

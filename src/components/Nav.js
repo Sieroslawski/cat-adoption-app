@@ -19,12 +19,12 @@ function Nav() {
   return (
     <div className='header-wrapper'>
     <NavUnlisted>
-    <nav>        
-    <ul>
-        <div className='icon-and-name'>
+    <div className='icon-and-name'>
         <FontAwesomeIcon icon={solid('shield-cat')} size="2x" className="cat-icon"/>
         <li>Adopt Me-ow</li>
-        </div>
+    </div>
+    <nav className="nav">        
+    <ul>       
         <div className='links'>
         <NavLink to="/" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Home</li></NavLink>       
         <NavLink to="/adoption" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Adoption</li></NavLink>

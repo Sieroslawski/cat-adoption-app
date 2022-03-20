@@ -6,6 +6,12 @@
     background-color: $brand-color;
     height: 8em;
 
+    ul {
+      float: right;
+      margin: 10px 30px 0px 0px;
+      padding: 0;
+    }
+   
    li {
     list-style-type: none;
     display: inline;
@@ -14,16 +20,12 @@
     font-size: 30px;
     color: $text-color-light;  
    }
-   .icon-and-name {
-    display: flex;   
-    left: 0;
-    display:inline;
+   .icon-and-name {      
+    float:left;
+    margin: 30px 0px 0px 30px;    
+    
   }
-  .links {
-    position: fixed;
-    display:inline;
-    right: 0;
-  }
+
    .cat-icon {
        color: $text-color-light;
    }
