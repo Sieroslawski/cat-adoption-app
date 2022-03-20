@@ -20,7 +20,7 @@ function Nav() {
     <div className='header-wrapper'>
     <NavUnlisted>
     <div className='icon-and-name'>
-        <FontAwesomeIcon icon={solid('shield-cat')} size="2x" className="cat-icon"/>
+        <NavLink to="/"><FontAwesomeIcon icon={solid('shield-cat')} size="2x" className="cat-icon"/></NavLink>
         <li>Adopt Me-ow</li>
     </div>
     <nav className="nav">        
