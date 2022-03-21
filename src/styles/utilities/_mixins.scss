@@ -157,3 +157,35 @@
     color: $text-color-light;
     transition: 300ms ease-out;
 }
+
+@mixin paws {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5em;
+}
+
+@mixin buttons {
+          border: 1px solid white;
+          height: 40px;          
+          border-radius: 10%;
+          appearance: none;
+          background-color: #fafbfcc2;
+          border: 1px solid rgba(27, 31, 35, 0.15);
+          border-radius: 6px;
+          box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+          box-sizing: border-box;
+          color: #24292E;
+          cursor: pointer;
+          display: inline-block;
+          font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 20px;
+          list-style: none;
+          padding: 10px 16px;  
+          transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}

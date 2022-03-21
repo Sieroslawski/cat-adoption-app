@@ -5,14 +5,12 @@
     @include nav;
     background-color: $brand-color;
     height: 8em;
-    border-bottom: 1px solid black;
-
+    border-bottom: 1px solid white;
     ul {
       float: right;
       margin: 10px 30px 0px 0px;
       padding: 0;
-    }
-   
+    }   
    li {
     list-style-type: none;
     display: inline;
@@ -26,15 +24,12 @@
     margin: 30px 0px 0px 30px;    
     
   }
-
    .cat-icon {
        color: $text-color-light;
    }
-
    a:link {
     text-decoration: $text-color-light;
-  }
-  
+  }  
   a:visited {
     text-decoration: none;
     color: $text-color-light;
