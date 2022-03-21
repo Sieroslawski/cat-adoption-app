@@ -1,5 +1,6 @@
 @use '../utilities/variables' as *;
 @use '../utilities/mixins' as *;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&family=Lato&family=Pacifico&display=swap');
 
 html {
     background-color: black!important;
@@ -79,6 +80,8 @@ html {
       
       .centered-btn:-webkit-details-marker, .centered-btn1:-webkit-details-marker {
         display: none;
-      }
-  
+      }  
 }
+
+//Media Queries
+

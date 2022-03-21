@@ -1,11 +1,15 @@
 @use '../utilities/variables' as *;
 @use '../utilities/mixins' as *;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400&family=Lato&family=Pacifico&display=swap');
 
 .header-wrapper {
     @include nav;
     background-color: $brand-color;
     height: 8em;
     border-bottom: 1px solid white;
+    font-family: 'Fredoka', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-family: 'Pacifico', cursive;
     ul {
       float: right;
       margin: 10px 30px 0px 0px;
@@ -37,6 +41,52 @@
   a:hover {
     @include nav-hover;
           
+  }   
+}
+
+//Media Queries
+@media only screen and (max-width: 920px) {
+  .header-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;   
+    li {
+      font-size: 25px;
+      padding: 10px;      
+    }
+    .icon-and-name {
+      margin-left: 5em;
+      
+    }
+    .nav {
+      margin-left: 2em;
+    }
   }
-   
+}
+
+@media only screen and (max-width: 550px) {
+  .header-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;   
+    li {
+      font-size: 18px;
+      padding: 10px;      
+    }
+    .icon-and-name {
+      margin-left: 5em;
+      
+    }
+    .nav {
+      margin-left: 2em;
+    }
+  }
 }

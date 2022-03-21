@@ -29,7 +29,7 @@ function Nav() {
         <NavLink to="/" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Home</li></NavLink>       
         <NavLink to="/adoption" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Adoption</li></NavLink>
         <NavLink to="/login" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>Login</li></NavLink>
-        <NavLink to="/about" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>About Us</li></NavLink>
+        <NavLink to="/about" className={(navData => (navData.isActive ? "header-li" : 'none'))}><li>About</li></NavLink>
         </div>        
     </ul>
     </nav>
