@@ -84,4 +84,68 @@ html {
 }
 
 //Media Queries
+@media only screen and (max-width: $tabletLandscape) {
+    .about-wrapper {
+        #cat-img {
+           height: 350px;
+           object-fit: cover;
+        }
 
+        .centered-btn {
+            position: absolute;
+            top: 50%;
+            left: 42%;
+            transform: translate(-50%, -50%);
+          }
+          .centered-btn1 {
+            position: absolute;
+            top: 50%;
+            left: 58%;
+            transform: translate(-50%, -50%);
+          }
+    }
+  }
+
+  @media only screen and (max-width: 656px) {
+    .about-wrapper {
+        #cat-img {
+           height: 350px;
+           object-fit: cover;
+        }
+
+        .centered-btn {
+            position: absolute;
+            top: 50%;
+            left: 39%;
+            transform: translate(-50%, -50%);
+          }
+          .centered-btn1 {
+            position: absolute;
+            top: 50%;
+            left: 61%;
+            transform: translate(-50%, -50%);
+          }
+    }
+  }
+
+  @media only screen and (max-width: $smallPhone) {
+    .about-wrapper {
+        #cat-img {
+           height: 350px;
+           object-fit: cover;
+        }
+
+        .centered-btn {
+            position: absolute;
+            top: 50%;
+            left: 36%;
+            transform: translate(-50%, -50%);
+          }
+          .centered-btn1 {
+            position: absolute;
+            top: 50%;
+            left: 64%;
+            transform: translate(-50%, -50%);
+          }
+    }
+  }
