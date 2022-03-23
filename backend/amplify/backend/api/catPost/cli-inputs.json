@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/posts": {
+      "name": "/posts",
+      "lambdaFunction": "catPostCats",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
