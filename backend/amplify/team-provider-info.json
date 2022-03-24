@@ -1,23 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-catadoption-dev-140018-authRole",
-      "UnauthRoleArn": "arn:aws:iam::777182473168:role/amplify-catadoption-dev-140018-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::777182473168:role/amplify-catadoption-dev-140018-authRole",
+      "AuthRoleName": "amplify-catpostsbackend-dev-170800-authRole",
+      "UnauthRoleArn": "arn:aws:iam::777182473168:role/amplify-catpostsbackend-dev-170800-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::777182473168:role/amplify-catpostsbackend-dev-170800-authRole",
       "Region": "us-west-1",
-      "DeploymentBucketName": "amplify-catadoption-dev-140018-deployment",
-      "UnauthRoleName": "amplify-catadoption-dev-140018-unauthRole",
-      "StackName": "amplify-catadoption-dev-140018",
-      "StackId": "arn:aws:cloudformation:us-west-1:777182473168:stack/amplify-catadoption-dev-140018/413ad060-aaec-11ec-b202-025689d722fb",
-      "AmplifyAppId": "dyk3eymofvde9"
-    },
-    "categories": {
-      "function": {
-        "catPostCats": {
-          "deploymentBucketName": "amplify-catadoption-dev-140018-deployment",
-          "s3Key": "amplify-builds/catPostCats-32373278506a7433745a-build.zip"
-        }
-      }
+      "DeploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
+      "UnauthRoleName": "amplify-catpostsbackend-dev-170800-unauthRole",
+      "StackName": "amplify-catpostsbackend-dev-170800",
+      "StackId": "arn:aws:cloudformation:us-west-1:777182473168:stack/amplify-catpostsbackend-dev-170800/7be37360-ab06-11ec-9aea-063f4fe73469",
+      "AmplifyAppId": "d1t1iw51a60mr9"
     }
   }
 }
