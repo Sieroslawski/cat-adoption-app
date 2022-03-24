@@ -10,6 +10,11 @@
       "StackName": "amplify-catpostsbackend-dev-170800",
       "StackId": "arn:aws:cloudformation:us-west-1:777182473168:stack/amplify-catpostsbackend-dev-170800/7be37360-ab06-11ec-9aea-063f4fe73469",
       "AmplifyAppId": "d1t1iw51a60mr9"
+    },
+    "categories": {
+      "auth": {
+        "catpostsbackendaa147ab5": {}
+      }
     }
   }
 }
