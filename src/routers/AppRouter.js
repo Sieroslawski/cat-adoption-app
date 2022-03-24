@@ -6,6 +6,7 @@ import PageAdoption from '../pages/PageAdoption';
 import PageError from '../pages/PageError';
 import PageLogin from '../pages/PageLogin';
 
+
 function AppRouter() {
   return (
     <BrowserRouter>

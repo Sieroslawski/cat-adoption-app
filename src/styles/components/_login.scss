@@ -1,0 +1,17 @@
+@use '../utilities/variables' as *;
+@use '../utilities/mixins' as *;
+
+.welcome-wrapper {
+    .welcome {
+        color: $text-color-light;
+    }
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.auth-wrapper{
+    margin-top: 10em!important;
+}
