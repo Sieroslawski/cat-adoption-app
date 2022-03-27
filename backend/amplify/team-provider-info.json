@@ -9,11 +9,22 @@
       "UnauthRoleName": "amplify-catpostsbackend-dev-170800-unauthRole",
       "StackName": "amplify-catpostsbackend-dev-170800",
       "StackId": "arn:aws:cloudformation:us-west-1:777182473168:stack/amplify-catpostsbackend-dev-170800/7be37360-ab06-11ec-9aea-063f4fe73469",
-      "AmplifyAppId": "d1t1iw51a60mr9"
+      "AmplifyAppId": "d1t1iw51a60mr9",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-catpostsbackend-dev-170800-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "catpostsbackendaa147ab5": {}
+      },
+      "function": {
+        "catPostCats": {
+          "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
+          "s3Key": "amplify-builds/catPostCats-714a336c5732356b546b-build.zip"
+        },
+        "catpostsbackendcatPostDatabase": {
+          "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
+          "s3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersion848b00d3-build.zip"
+        }
       }
     }
   }

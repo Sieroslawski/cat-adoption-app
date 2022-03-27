@@ -24,5 +24,48 @@
         ]
       }
     }
+  },
+  "function": {
+    "catPostCats": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "catpostsbackendcatPostDatabase",
+          "attributes": [
+            "Arn"
+          ]
+        }
+      ]
+    },
+    "catpostsbackendcatPostDatabase": {
+      "providerPlugin": "awscloudformation",
+      "service": "LambdaLayer",
+      "build": true
+    }
+  },
+  "storage": {
+    "catadoptionDB": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "api": {
+    "catPosts": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "catPostCats",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
   }
 }
