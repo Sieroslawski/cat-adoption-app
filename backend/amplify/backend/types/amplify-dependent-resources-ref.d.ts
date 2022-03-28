@@ -1,6 +1,6 @@
 export type AmplifyDependentResourcesAttributes = {
     "auth": {
-        "catpostsbackendaa147ab5": {
+        "catpostsbackended39326f": {
             "IdentityPoolId": "string",
             "IdentityPoolName": "string",
             "UserPoolId": "string",
@@ -19,6 +19,12 @@ export type AmplifyDependentResourcesAttributes = {
         },
         "catpostsbackendcatPostDatabase": {
             "Arn": "string"
+        },
+        "catpostsbackended39326fPreSignup": {
+            "Name": "string",
+            "Arn": "string",
+            "LambdaExecutionRole": "string",
+            "Region": "string"
         }
     },
     "storage": {

@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "catpostsbackendaa147ab5_identitypool_aa147ab5",
+    "identityPoolName": "catpostsbackended39326f_identitypool_ed39326f",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "catposaa147ab5",
-    "userPoolName": "catpostsbackendaa147ab5_userpool_aa147ab5",
+    "resourceNameTruncated": "catposed39326f",
+    "userPoolName": "catpostsbackended39326f_userpool_ed39326f",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -16,8 +16,8 @@
     "smsVerificationMessage": "Your verification code is {####}",
     "emailVerificationSubject": "Your verification code",
     "emailVerificationMessage": "Your verification code is {####}",
-    "defaultPasswordPolicy": true,
-    "passwordPolicyMinLength": "6",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
       "email"
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "catposaa147ab5_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "catposed39326f_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "aa147ab5",
-    "resourceName": "catpostsbackendaa147ab5",
+    "sharedId": "ed39326f",
+    "resourceName": "catpostsbackended39326f",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "userPoolGroupList": [],
@@ -54,16 +54,31 @@
       ]
     },
     "breakCircularDependency": true,
-    "dependsOn": [],
+    "dependsOn": [
+      {
+        "category": "function",
+        "resourceName": "catpostsbackended39326fPreSignup",
+        "triggerProvider": "Cognito",
+        "attributes": [
+          "Arn",
+          "Name"
+        ]
+      }
+    ],
     "thirdPartyAuth": false,
     "userPoolGroups": false,
     "adminQueries": false,
-    "triggers": {},
+    "triggers": {
+      "PreSignup": [
+        "custom"
+      ]
+    },
     "hostedUI": false,
     "authProviders": [],
     "parentStack": {
       "Ref": "AWS::StackId"
     },
+    "authTriggerConnections": "[\n  {\n    \"triggerType\": \"PreSignUp\",\n    \"lambdaFunctionName\": \"catpostsbackended39326fPreSignup\"\n  }\n]",
     "permissions": []
   }
 }
