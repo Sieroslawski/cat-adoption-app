@@ -47,6 +47,10 @@
     },
     "s3Key": {
       "Type": "String"
+    },
+    "functioncatpostsbackendcatPostDatabaseArn": {
+      "Type": "String",
+      "Default": "functioncatpostsbackendcatPostDatabaseArn"
     }
   },
   "Conditions": {
@@ -120,7 +124,12 @@
           "S3Key": {
             "Ref": "s3Key"
           }
-        }
+        },
+        "Layers": [
+          {
+            "Ref": "functioncatpostsbackendcatPostDatabaseArn"
+          }
+        ]
       }
     },
     "LambdaExecutionRole": {

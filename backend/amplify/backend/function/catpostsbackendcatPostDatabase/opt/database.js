@@ -31,6 +31,28 @@ async function createUser(username) {
 }
 exports.createUser = createUser
 
+async function getUserWithUsername(username) { 
+  let params = {
+    TableName: tableName,
+    KeyConditions: {
+      PK: {
+        ComparisonOperator: 'EQ',
+        AttributeValueList: ["USER#" + username]
+      },
+      SK: {
+        ComparisonOperator:'EQ',
+        AttributeValueList: ["USER#" + username]
+      }
+    },
+    ScanIndexForward: false
+  }
+  const result = await dynamodb.query(params).promise()
+  return result
+}
+
+exports.getUserWithUsername = getUserWithUsername
+
+
 async function createPost(username, description, imageName) {
   const Item = {
     PK: "USER#" + username,

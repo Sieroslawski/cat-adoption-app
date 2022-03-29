@@ -13,5 +13,14 @@
   "triggerEventPath": "PreSignup.event.json",
   "roleName": "catpostsbackended39326fPreSignup",
   "skipEdit": true,
-  "enableCors": false
+  "enableCors": false,
+  "lambdaLayers": [
+    {
+      "type": "ProjectLayer",
+      "resourceName": "catpostsbackendcatPostDatabase",
+      "env": "dev",
+      "version": "Always choose latest version",
+      "isLatestVersionSelected": true
+    }
+  ]
 }
