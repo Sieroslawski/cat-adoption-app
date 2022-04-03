@@ -1,9 +1,10 @@
 import React from 'react'
+import * as amplify from './amplify';
 import { Amplify } from 'aws-amplify';
 import { Authenticator, Button } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import awsExports from './aws-exports';
-import * as amplify from './amplify';
+
 Amplify.configure(awsExports);
 
 function Login() {
