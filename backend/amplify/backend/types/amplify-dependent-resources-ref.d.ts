@@ -37,6 +37,10 @@ export type AmplifyDependentResourcesAttributes = {
             "SortKeyName": "string",
             "SortKeyType": "string",
             "Region": "string"
+        },
+        "rateMyCatS3": {
+            "BucketName": "string",
+            "Region": "string"
         }
     },
     "api": {

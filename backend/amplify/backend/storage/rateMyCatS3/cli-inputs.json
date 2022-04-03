@@ -1,0 +1,16 @@
+{
+  "resourceName": "rateMyCatS3",
+  "policyUUID": "ac9b7549",
+  "bucketName": "ratemycats3bucket",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

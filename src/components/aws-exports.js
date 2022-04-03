@@ -31,6 +31,8 @@ const awsmobile = {
             "region": "us-west-1"
         }
     ],
+    "aws_user_files_s3_bucket": "ratemycats3bucket170800-dev",
+    "aws_user_files_s3_bucket_region": "us-west-1",
     "aws_cloud_logic_custom": [
         {
             "name": "catPosts",

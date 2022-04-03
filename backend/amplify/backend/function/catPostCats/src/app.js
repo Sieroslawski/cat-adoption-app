@@ -45,7 +45,7 @@ async function getAuthUser(req) {
   return user
 }
 
-
+//Get all posts
 app.get('/posts', async (req, res) => {
   // Add your code here
   try {
@@ -64,6 +64,7 @@ app.get('/posts', async (req, res) => {
   }
 });
 
+//Get all comments
 app.get('/posts/:id/comments', async (req, res) => {
   const postId = req.params.id 
   
@@ -81,15 +82,14 @@ app.get('/posts/:id/comments', async (req, res) => {
     res.status(500).send(error)
   }
 });
-
+//Create a post
 app.post('/posts', async (req, res) => {
   const description = req.body.description
-  const imageName = req.body.imageName
-  const completed = req.body.completed
-  
+  const imageName = req.body.imageName 
+
   try {
     const authUser = await getAuthUser(req)
-    const result = await database.createPost(authUser.Username, description, imageName, completed)
+    const result = await database.createPost(authUser.Username, description, imageName)
     result.id = result.SK.replace("POST#", "")
     res.send(result)
   } catch (error) {
@@ -98,10 +98,10 @@ app.post('/posts', async (req, res) => {
   }
 });
 
+//Create a comment
 app.post('/posts/:id/comments', async (req, res) => {
   const postId = req.params.id 
   const text = req.body.text
-
   try {
     const authUser = await getAuthUser(req)
     const result = await database.createComment(authUser.Username, postId, text)
@@ -113,4 +113,45 @@ app.post('/posts/:id/comments', async (req, res) => {
   }
 })
 
+//Edit a post
+app.patch('/posts/:id', async function(req, res) {  
+  const authUser = await getAuthUser(req)
+  if(authUser) { 
+  const postId = req.body.id
+  const description = req.body.description
+  const task = await database.editPost(postId, description)
+  res.send({task})
+  }
+});
+
+//Edit a comment
+app.patch('/posts/:id/comments', async function(req, res) {  
+  const authUser = await getAuthUser(req)
+  if(authUser) { 
+  const postId = req.params.id 
+  const text = req.body.text
+  const task = await database.editComment(postId, text)
+  res.send({task})
+  }
+});
+
+//Delete a post
+app.delete('/posts/:id', async function(req, res) {
+  const authUser = await getAuthUser(req)
+  if(authUser) { 
+ const id = req.body.id
+ await database.deletePost(id)
+ res.end()
+  }
+});
+
+//Delete a comment
+app.delete('/posts/:id/comments', async function(req, res) {
+  const authUser = await getAuthUser(req)
+  if(authUser) { 
+  const postId = req.params.id 
+  await database.deleteComment(postId)
+  res.end()
+  }
+});
 module.exports = app
