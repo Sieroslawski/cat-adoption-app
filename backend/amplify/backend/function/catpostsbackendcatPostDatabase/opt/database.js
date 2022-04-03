@@ -1,6 +1,6 @@
 const AWS = require('aws-sdk')
 
-const { ulid } = require('ulid');
+const { ulid } = require('ulid')
 AWS.config.update({ region: 'us-west-1' });
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -18,7 +18,7 @@ async function createUser(username) {
   const Item = {
     username: username,
     PK: "USER#" + username,
-    SK: "USER#" + username,  
+    SK: "USER#" + username,    
     postCount: 0,
     created: new Date().toISOString()
   }
@@ -31,27 +31,25 @@ async function createUser(username) {
 }
 exports.createUser = createUser
 
-async function getUserWithUsername(username) { 
-  let params = {
-    TableName: tableName,
-    KeyConditions: {
-      PK: {
-        ComparisonOperator: 'EQ',
-        AttributeValueList: ["USER#" + username]
-      },
-      SK: {
-        ComparisonOperator:'EQ',
-        AttributeValueList: ["USER#" + username]
+async function getUserWithUsername(username) {
+    let params = {
+      TableName: tableName,
+      KeyConditions: {
+        PK: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: ["USER#" + username]
+        },
+        SK: {
+          ComparisonOperator: 'EQ',
+          AttributeValueList: ["USER#" + username]
+        }
       }
-    },
-    ScanIndexForward: false
+    }
+
+    const result = await dynamodb.query(params).promise()
+    console.log(result)
   }
-  const result = await dynamodb.query(params).promise()
-  return result
-}
-
 exports.getUserWithUsername = getUserWithUsername
-
 
 async function createPost(username, description, imageName) {
   const Item = {
@@ -61,7 +59,8 @@ async function createPost(username, description, imageName) {
     imageName,
     created: new Date().toISOString(),
     likeCount: 0,
-    commentCount: 0
+    commentCount: 0,
+    completed: 0
   }
 
   let createParams = {

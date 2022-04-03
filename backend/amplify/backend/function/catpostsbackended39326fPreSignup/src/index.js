@@ -1,4 +1,10 @@
-/**
+/* Amplify Params - DO NOT EDIT
+	ENV
+	REGION
+	STORAGE_CATADOPTIONDB_ARN
+	STORAGE_CATADOPTIONDB_NAME
+	STORAGE_CATADOPTIONDB_STREAMARN
+Amplify Params - DO NOT EDIT *//**
  * @fileoverview
  *
  * This CloudFormation Trigger creates a handler which awaits the other handlers

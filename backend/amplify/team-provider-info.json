@@ -17,15 +17,15 @@
       "function": {
         "catPostCats": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
-          "s3Key": "amplify-builds/catPostCats-4b356437484c78647a33-build.zip"
+          "s3Key": "amplify-builds/catPostCats-6c497749564d66497476-build.zip"
         },
         "catpostsbackendcatPostDatabase": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
-          "s3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersion848b00d3-build.zip"
+          "s3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersion9cfe79de-build.zip"
         },
         "catpostsbackended39326fPreSignup": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
-          "s3Key": "amplify-builds/catpostsbackended39326fPreSignup-74672b4348442b6e5330-build.zip"
+          "s3Key": "amplify-builds/catpostsbackended39326fPreSignup-714a4455363645704969-build.zip"
         }
       },
       "auth": {

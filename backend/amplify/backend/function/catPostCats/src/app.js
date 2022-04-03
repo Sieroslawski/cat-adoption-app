@@ -1,23 +1,13 @@
-/*
-Copyright 2017 - 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
-    http://aws.amazon.com/apache2.0/
-or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and limitations under the License.
-*/
-
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+
+const database = require('./database')
 
 // declare a new express app
 const app = express()
 app.use(bodyParser.json())
 app.use(awsServerlessExpressMiddleware.eventContext())
-
-const database = require("/opt/database.js")
-const AWS = require('aws-sdk')
 
 // Enable CORS for all methods
 app.use(function(req, res, next) {
@@ -26,68 +16,101 @@ app.use(function(req, res, next) {
   next()
 });
 
+const AWS = require('aws-sdk')
 
-/**********************
- * Example get method *
- **********************/
+async function getAuthUser(req) {
+  const authProvider = req.apiGateway.event.requestContext.identity.cognitoAuthenticationProvider
+  console.log({authProvider})
+  if (!authProvider) {
+    return
+  }
+  const parts = authProvider.split(':');
+  const poolIdParts = parts[parts.length - 3];
+  if (!poolIdParts) {
+    return 
+  }
+  const userPoolIdParts = poolIdParts.split('/');
 
-app.get('/posts', function(req, res) {
+  const userPoolId = userPoolIdParts[userPoolIdParts.length - 1];
+  const userPoolUserId = parts[parts.length - 1];
+
+  const cognito = new AWS.CognitoIdentityServiceProvider();
+  const listUsersResponse = await cognito.listUsers({
+      UserPoolId: userPoolId,
+      Filter: `sub = "${userPoolUserId}"`,
+      Limit: 1,
+    }).promise();
+
+  const user = listUsersResponse.Users[0];
+  return user
+}
+
+
+app.get('/posts', async (req, res) => {
   // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+  try {
+    const authUser = await getAuthUser(req)
+    let posts = await database.getPosts(authUser.Username)
+    posts.Items = posts.Items.map(post => {
+      return {
+        ...post,
+        id: post.SK.replace("POST#", "")
+      }
+    })
+    res.send(posts)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+  }
 });
 
-app.get('/posts/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'get call succeed!', url: req.url});
+app.get('/posts/:id/comments', async (req, res) => {
+  const postId = req.params.id 
+  
+  try {
+    let comments = await database.getComments(postId)
+    comments.Items = comments.Items.map(comment => {
+      return {
+        ...comment,
+        id: comment.SK.replace("COMMENT#", "")
+      }
+    })
+    res.send(comments)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+  }
 });
 
-/****************************
-* Example post method *
-****************************/
-
-app.post('/posts', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
+app.post('/posts', async (req, res) => {
+  const description = req.body.description
+  const imageName = req.body.imageName
+  const completed = req.body.completed
+  
+  try {
+    const authUser = await getAuthUser(req)
+    const result = await database.createPost(authUser.Username, description, imageName, completed)
+    result.id = result.SK.replace("POST#", "")
+    res.send(result)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+  }
 });
 
-app.post('/posts/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
+app.post('/posts/:id/comments', async (req, res) => {
+  const postId = req.params.id 
+  const text = req.body.text
 
-/****************************
-* Example put method *
-****************************/
+  try {
+    const authUser = await getAuthUser(req)
+    const result = await database.createComment(authUser.Username, postId, text)
+    result.id = result.SK.replace("COMMENT#", "")
+    res.send(result)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send(error)
+  }
+})
 
-app.put('/posts', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
-
-app.put('/posts/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
-
-/****************************
-* Example delete method *
-****************************/
-
-app.delete('/posts', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
-});
-
-app.delete('/posts/*', function(req, res) {
-  // Add your code here
-  res.json({success: 'delete call succeed!', url: req.url});
-});
-
-app.listen(3000, function() {
-    console.log("App started")
-});
-
-// Export the app object. When executing the application local this does nothing. However,
-// to port it to AWS Lambda we will create a wrapper around that will load the app from
-// this file
 module.exports = app

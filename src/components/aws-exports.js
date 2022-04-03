@@ -3,10 +3,10 @@
 
 const awsmobile = {
     "aws_project_region": "us-west-1",
-    "aws_cognito_identity_pool_id": "us-west-1:d8909494-85fb-4122-9731-d6cbe3cf6071",
+    "aws_cognito_identity_pool_id": "us-west-1:46f09e75-3f8a-46c9-8410-9c571380b5f7",
     "aws_cognito_region": "us-west-1",
-    "aws_user_pools_id": "us-west-1_llijWpehV",
-    "aws_user_pools_web_client_id": "5aqoocja18ak0koouqsifpvv3l",
+    "aws_user_pools_id": "us-west-1_LVljWEMTA",
+    "aws_user_pools_web_client_id": "5hdjvfcf6uqef7hsgp920ov1at",
     "oauth": {},
     "aws_cognito_username_attributes": [],
     "aws_cognito_social_providers": [],
@@ -23,6 +23,20 @@ const awsmobile = {
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
+    ],
+    "aws_dynamodb_all_tables_region": "us-west-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "catadoptionDB-dev",
+            "region": "us-west-1"
+        }
+    ],
+    "aws_cloud_logic_custom": [
+        {
+            "name": "catPosts",
+            "endpoint": "https://8xhj9eslsd.execute-api.us-west-1.amazonaws.com/dev",
+            "region": "us-west-1"
+        }
     ]
 };
 

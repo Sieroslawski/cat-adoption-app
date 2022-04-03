@@ -51,6 +51,18 @@
     "functioncatpostsbackendcatPostDatabaseArn": {
       "Type": "String",
       "Default": "functioncatpostsbackendcatPostDatabaseArn"
+    },
+    "storagecatadoptionDBName": {
+      "Type": "String",
+      "Default": "storagecatadoptionDBName"
+    },
+    "storagecatadoptionDBArn": {
+      "Type": "String",
+      "Default": "storagecatadoptionDBArn"
+    },
+    "storagecatadoptionDBStreamArn": {
+      "Type": "String",
+      "Default": "storagecatadoptionDBStreamArn"
     }
   },
   "Conditions": {
@@ -106,6 +118,15 @@
             },
             "DOMAINBLACKLIST": {
               "Ref": "DOMAINBLACKLIST"
+            },
+            "STORAGE_CATADOPTIONDB_NAME": {
+              "Ref": "storagecatadoptionDBName"
+            },
+            "STORAGE_CATADOPTIONDB_ARN": {
+              "Ref": "storagecatadoptionDBArn"
+            },
+            "STORAGE_CATADOPTIONDB_STREAMARN": {
+              "Ref": "storagecatadoptionDBStreamArn"
             }
           }
         },
@@ -209,6 +230,58 @@
                   }
                 ]
               }
+            }
+          ]
+        }
+      }
+    },
+    "AmplifyResourcesPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-lambda-execution-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:Put*",
+                "dynamodb:Create*",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:Get*",
+                "dynamodb:BatchGetItem",
+                "dynamodb:List*",
+                "dynamodb:Describe*",
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:Update*",
+                "dynamodb:RestoreTable*",
+                "dynamodb:Delete*"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storagecatadoptionDBArn"
+                },
+                {
+                  "Fn::Join": [
+                    "/",
+                    [
+                      {
+                        "Ref": "storagecatadoptionDBArn"
+                      },
+                      "index/*"
+                    ]
+                  ]
+                }
+              ]
             }
           ]
         }
