@@ -59,8 +59,7 @@ async function createPost(username, description, imageName) {
     imageName,
     created: new Date().toISOString(),
     likeCount: 0,
-    commentCount: 0,
-    completed: 0
+    commentCount: 0    
   }
 
   let createParams = {
@@ -174,3 +173,41 @@ async function getComments(postId) {
   return result
 }
 exports.getComments = getComments
+
+async function deletePost(username, postId){
+  let params = {
+    TableName: tableName,
+    KeyConditions: {
+      PK: "USER#" + username,
+      SK: "POST#" + postId
+    },
+    ScanIndexForward: false
+  }
+    dynamodb.delete(params, function(err, data) {
+      if(err) {
+        console.error("Unable to delete post, Error JSON:", JSON.stringify(err,null,2))
+      } else {
+        console.log("Delete Item succeeded:", JSON.stringify(data,null,2))
+      }
+    })
+}
+exports.deletePost = deletePost
+
+async function deleteComment(postId) {
+  let params = {
+    TableName: tableName,
+    KeyConditions: {
+      PK: "POST#" + postId,
+      SK: "COMMENT#"
+    },
+    ScanIndexForward: false
+  }
+  dynamodb.delete(params, function(err, data) {
+    if(err) {
+      console.error("Unable to delete comment, Error JSON:", JSON.stringify(err,null,2))
+    } else {
+      console.log("Delete Item succeeded:", JSON.stringify(data,null,2))
+    }
+  })
+}
+exports.deleteComment = deleteComment

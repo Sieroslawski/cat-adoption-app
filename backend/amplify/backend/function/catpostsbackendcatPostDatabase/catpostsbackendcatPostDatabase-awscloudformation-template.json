@@ -20,7 +20,7 @@
     }
   },
   "Resources": {
-    "LambdaLayerVersion1b562f7f": {
+    "LambdaLayerVersione3f6d119": {
       "Type": "AWS::Lambda::LayerVersion",
       "Properties": {
         "CompatibleRuntimes": {
@@ -51,13 +51,87 @@
       "DeletionPolicy": "Delete",
       "UpdateReplacePolicy": "Retain"
     },
-    "LambdaLayerPermissionPrivate1b562f7f": {
+    "LambdaLayerPermissionPrivatee3f6d119": {
       "Type": "AWS::Lambda::LayerVersionPermission",
       "Properties": {
         "Action": "lambda:GetLayerVersion",
         "LayerVersionArn": {
-          "Ref": "LambdaLayerVersion1b562f7f"
+          "Ref": "LambdaLayerVersione3f6d119"
         },
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion7fed7d57": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs14.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersion7fed7d57-build.zip"
+        },
+        "Description": "Updated layer version 2022-04-04T00:14:49.097Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "catpostsbackendcatPostDatabase-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate7fed7d57": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-west-1:777182473168:layer:catpostsbackendcatPostDatabase-dev:7",
+        "Principal": {
+          "Ref": "AWS::AccountId"
+        }
+      }
+    },
+    "LambdaLayerVersion1b562f7f": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "CompatibleRuntimes": [
+          "nodejs14.x"
+        ],
+        "Content": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersion1b562f7f-build.zip"
+        },
+        "Description": "Updated layer version 2022-04-03T20:10:35.821Z",
+        "LayerName": {
+          "Fn::Sub": [
+            "catpostsbackendcatPostDatabase-${env}",
+            {
+              "env": {
+                "Ref": "env"
+              }
+            }
+          ]
+        }
+      },
+      "DeletionPolicy": "Delete",
+      "UpdateReplacePolicy": "Retain"
+    },
+    "LambdaLayerPermissionPrivate1b562f7f": {
+      "Type": "AWS::Lambda::LayerVersionPermission",
+      "Properties": {
+        "Action": "lambda:GetLayerVersion",
+        "LayerVersionArn": "arn:aws:lambda:us-west-1:777182473168:layer:catpostsbackendcatPostDatabase-dev:6",
         "Principal": {
           "Ref": "AWS::AccountId"
         }
@@ -215,7 +289,7 @@
   "Outputs": {
     "Arn": {
       "Value": {
-        "Ref": "LambdaLayerVersion1b562f7f"
+        "Ref": "LambdaLayerVersione3f6d119"
       }
     }
   }
