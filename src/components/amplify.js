@@ -13,11 +13,13 @@ function randomString(bytes = 16) {
 
 export async function uploadImage(file) {
   const result = await Storage.put(randomString(), file);
+  console.log("upload image result: " +  result)
   return result
   }
 
 export async function getImage(name) {
   const url = await Storage.get(name);
+  console.log("get image result: " + url);
   return url;
   }
   
