@@ -32,7 +32,7 @@ export async function getPosts() {
     const imageUrl = await Storage.get(item.imageName);
     return {
       ...item,
-      imageUrl
+      imageUrl,
     }
   }))
 }
@@ -93,10 +93,11 @@ export async function editComment(postId, text) {
 //Delete a post
 export async function deletePost(postId) {
   const path = `/posts/${postId}`
+  console.log("Path: " + path)
   const result = await API.del(apiName,path, {
     body: {postId}
   })
-  console.log(result)
+  console.log("Delete result: " + result)
   return result
 }
 
@@ -105,7 +106,6 @@ export async function deleteComment(postId) {
   const path = `/posts/${postId}/comments`
   const result = await API.del(apiName,path, {
     body: {postId}
-  })
-  console.log(result)
+  })  
   return result
 }

@@ -180,8 +180,7 @@ async function deletePost(username, postId){
     KeyConditions: {
       PK: "USER#" + username,
       SK: "POST#" + postId
-    },
-    ScanIndexForward: false
+    },  
   }
     dynamodb.delete(params, function(err, data) {
       if(err) {

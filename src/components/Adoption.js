@@ -14,11 +14,12 @@ function Adoption() {
 
   async function getPosts() {
     const posts = await amplify.getPosts()
+    console.log(posts)
     setPosts(posts)
   }
 
   const deletePost = async (post) => {
-    await amplify.deletePost(post.id)
+    await amplify.deletePost(post)
     await getPosts()
   }
 
@@ -27,9 +28,9 @@ function Adoption() {
       <CreatePostForm></CreatePostForm>
      {posts.map(post => (
         <Card variation="elevated" key={post.id} display="flex" flex-direction="column" align-items="center" backgroundColor="azure" className="card">        
-          <p>Username: {post.username}</p>
+          <p>Username: {post.PK.replace("USER#", "")}</p>
           <img src={post.imageUrl} alt ="cat-img"/>
-          <p>{post.description}</p>  
+          <p>Description: {post.description}</p>  
           <p>Like count: {post.likeCount}</p>
           <p>Comment count: {post.commentCount}</p>                    
           <Button onClick={() => deletePost(post.id)}>🗑️</Button>

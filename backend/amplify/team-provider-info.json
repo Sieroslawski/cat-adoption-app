@@ -21,7 +21,7 @@
         },
         "catpostsbackendcatPostDatabase": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
-          "s3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersione3f6d119-build.zip"
+          "s3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersionce8765bc-build.zip"
         },
         "catpostsbackended39326fPreSignup": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
