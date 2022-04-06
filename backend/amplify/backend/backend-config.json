@@ -42,6 +42,22 @@
       "service": "Lambda",
       "dependsOn": [
         {
+          "category": "auth",
+          "resourceName": "catpostsbackended39326f",
+          "attributes": [
+            "UserPoolId"
+          ]
+        },
+        {
+          "category": "storage",
+          "resourceName": "catadoptionDB",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        },
+        {
           "category": "function",
           "resourceName": "catpostsbackendcatPostDatabase",
           "attributes": [

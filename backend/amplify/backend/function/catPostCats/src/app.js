@@ -1,8 +1,15 @@
-const express = require('express')
+/* Amplify Params - DO NOT EDIT
+	AUTH_CATPOSTSBACKENDED39326F_USERPOOLID
+	ENV
+	REGION
+	STORAGE_CATADOPTIONDB_ARN
+	STORAGE_CATADOPTIONDB_NAME
+	STORAGE_CATADOPTIONDB_STREAMARN
+Amplify Params - DO NOT EDIT */const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 
-const database = require('./database')
+const database = require('/opt/database')
 
 // declare a new express app
 const app = express()
@@ -84,7 +91,7 @@ app.get('/posts/:id/comments', async (req, res) => {
 });
 //Create a post
 app.post('/posts', async (req, res) => {
-  const description = req.body.description
+  const description = req.body.catText
   const imageName = req.body.imageName 
 
   try {

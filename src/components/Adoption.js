@@ -1,39 +1,40 @@
 import React from 'react'
 import * as amplify from './amplify'
+import { Button, Card } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react'
+import CreatePostForm from './CreatePostForm'
 
 function Adoption() {
-  const [file, setFile] = useState()
-  const [imgUrl, setImgUrl] = useState(localStorage.getItem('imgUrl'))
 
-  useEffect(() => {
-    localStorage.setItem('imgUrl', imgUrl)
-  })
+  const [posts, setPosts] = useState([])
 
-  
-  const uploadImage = async event => {
-    event.preventDefault()
-    const result = await amplify.uploadImage(file)
-    const url = await amplify.getImage(result.key)    
-    setImgUrl(url)
+  useEffect(() => {  
+    getPosts()
+  }, [])
+
+  async function getPosts() {
+    const posts = await amplify.getPosts()
+    setPosts(posts)
   }
 
-  
-  const fileSelected = event => {
-    const file = event.target.files[0]
-		setFile(file)    
-	}
-
+  const deletePost = async (post) => {
+    await amplify.deletePost(post.id)
+    await getPosts()
+  }
 
   return (
     <div className="App">
-    <form onSubmit={uploadImage}>
-    <input onChange={fileSelected} type="file" accept="image/*"></input>
-      <button type="submit">Upload</button>
-    </form>
-    <div className='cat-img'>    
-    {imgUrl && <img src={imgUrl}/>}
-    </div>
+      <CreatePostForm></CreatePostForm>
+     {posts.map(post => (
+        <Card variation="elevated" key={post.id} display="flex" flex-direction="column" align-items="center" backgroundColor="azure" className="card">        
+          <p>Username: {post.username}</p>
+          <img src={post.imageUrl} alt ="cat-img"/>
+          <p>{post.description}</p>  
+          <p>Like count: {post.likeCount}</p>
+          <p>Comment count: {post.commentCount}</p>                    
+          <Button onClick={() => deletePost(post.id)}>🗑️</Button>
+        </Card> 
+      ))}             
   </div>
   )
 }

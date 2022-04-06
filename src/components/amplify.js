@@ -44,13 +44,13 @@ export async function getComments(postId) {
 }
 
 //Create a post
-export async function createPost(description, file) {
+export async function createPost(catText, file) {
   const { key } = await Storage.put(randomString(), file);
   const path = '/posts' 
   const result = await API.post(apiName, path, {
     body: { 
       imageName: key,
-      description
+      catText
     }
   })
   console.log(result)

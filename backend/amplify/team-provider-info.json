@@ -17,7 +17,7 @@
       "function": {
         "catPostCats": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
-          "s3Key": "amplify-builds/catPostCats-2b36672b544e6d486758-build.zip"
+          "s3Key": "amplify-builds/catPostCats-67364a48483456517755-build.zip"
         },
         "catpostsbackendcatPostDatabase": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
