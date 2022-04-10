@@ -174,21 +174,30 @@ async function getComments(postId) {
 }
 exports.getComments = getComments
 
-async function deletePost(username, postId){
+async function deletePost(username, postId) {
   let params = {
     TableName: tableName,
-    KeyConditions: {
+    Key: {
       PK: "USER#" + username,
       SK: "POST#" + postId
-    },  
+    }
   }
-    dynamodb.delete(params, function(err, data) {
-      if(err) {
-        console.error("Unable to delete post, Error JSON:", JSON.stringify(err,null,2))
-      } else {
-        console.log("Delete Item succeeded:", JSON.stringify(data,null,2))
-      }
-    })
+  let updateParams = {
+    TableName: tableName,
+    Key: {
+      PK: "USER#" + username,
+      SK: "USER#" + username,
+    },
+    UpdateExpression: "SET postCount = postCount - :inc",
+    ExpressionAttributeValues: {
+        ":inc": 1
+    }
+  }
+
+    const result = await dynamodb.delete(params).promise()
+    await dynamodb.update(updateParams).promise()
+    return result
+
 }
 exports.deletePost = deletePost
 
