@@ -18,9 +18,12 @@ function Adoption() {
     setPosts(posts)
   }
 
-  const deletePost = async (post) => {
-    await amplify.deletePost(post)
-    await getPosts()
+  const deletePost = async (postId) => {    
+      const result = await amplify.deletePost(postId)
+      const newPosts = posts.filter(item => item.id !== postId)
+      setPosts(newPosts)
+      console.log(result)
+  
   }
 
   return (

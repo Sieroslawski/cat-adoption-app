@@ -94,9 +94,7 @@ export async function editComment(postId, text) {
 export async function deletePost(postId) {
   const path = `/posts/${postId}`
   console.log("Path: " + path)
-  const result = await API.del(apiName,path, {
-    body: {postId}
-  })
+  const result = await API.del(apiName,path)
   console.log("Delete result: " + result)
   return result
 }

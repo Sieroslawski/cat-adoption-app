@@ -144,12 +144,23 @@ app.patch('/posts/:id/comments', async function(req, res) {
 
 //Delete a post
 app.delete('/posts/:id', async function(req, res) {
-  const authUser = await getAuthUser(req)
-  if(authUser) { 
- const id = req.body.id
- await database.deletePost(id)
- res.end()
-  }
+  const postId = req.params.id;
+  console.log("post id: " + postId)
+  try {
+    const authUser = await getAuthUser(req)
+    const post = await database.getPost(authUser.Username, postId)
+    console.log(post)
+    if(Object.keys(post).length === 0) {
+      res.status(403).send({error: "Cannot delete"})
+    } else {
+      const result = await database.deletePost(authUser.Username, postId)
+      console.log("Result: " + JSON.stringify(result))
+      res.send({message: "deleted successfully", postId: postId})
+    }
+  } catch(error) {
+    console.log(error)
+    res.status(500).send(error)
+  } 
 });
 
 //Delete a comment
