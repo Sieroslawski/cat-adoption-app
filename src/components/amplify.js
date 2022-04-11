@@ -73,10 +73,10 @@ export async function editPost(postId, description) {
   const path = `/posts/${postId}`
   console.log(path)
   const result = await API.patch(apiName,path, {
-    body: {postId, description}
+    body: {description}
   })
   console.log(result)
-  return result.description
+  return result
 }
 
 //Edit a comment

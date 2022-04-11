@@ -124,10 +124,10 @@ app.post('/posts/:id/comments', async (req, res) => {
 app.patch('/posts/:id', async function(req, res) {  
   const authUser = await getAuthUser(req)
   if(authUser) { 
-  const postId = req.body.id
+  //const postId = req.params.id
   const description = req.body.description
-  const task = await database.editPost(postId, description)
-  res.send({task})
+  const postDescription = await database.updatePost(description)
+  res.send({postDescription})
   }
 });
 

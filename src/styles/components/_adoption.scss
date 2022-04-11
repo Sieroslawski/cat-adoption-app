@@ -1,0 +1,11 @@
+@use '../utilities/variables' as *;
+@use '../utilities/mixins' as *;
+
+.edit-icon, .delete-icon {
+    width: 40px;
+    cursor: pointer;
+}
+
+.cat-image {
+    width: 300px;
+}

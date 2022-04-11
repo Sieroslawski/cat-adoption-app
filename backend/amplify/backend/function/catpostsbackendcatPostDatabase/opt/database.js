@@ -57,8 +57,7 @@ async function createPost(username, description, imageName) {
     SK: "POST#" + ulid(),
     description,
     imageName,
-    created: new Date().toISOString(),
-    likeCount: 0,
+    created: new Date().toISOString(),   
     commentCount: 0    
   }
 
@@ -201,21 +200,17 @@ async function deletePost(username, postId) {
 }
 exports.deletePost = deletePost
 
-async function deleteComment(postId) {
+async function updatePost(username, postId) {
   let params = {
     TableName: tableName,
-    KeyConditions: {
-      PK: "POST#" + postId,
-      SK: "COMMENT#"
-    },
-    ScanIndexForward: false
-  }
-  dynamodb.delete(params, function(err, data) {
-    if(err) {
-      console.error("Unable to delete comment, Error JSON:", JSON.stringify(err,null,2))
-    } else {
-      console.log("Delete Item succeeded:", JSON.stringify(data,null,2))
-    }
-  })
+    Key: {
+      PK: "USER#" + username,
+      SK: "POST#" + postId
+    }    
+  } 
+  
+  const result = await dynamodb.update(params).promise()  
+  return result;
 }
-exports.deleteComment = deleteComment
+
+exports.updatePost = updatePost
