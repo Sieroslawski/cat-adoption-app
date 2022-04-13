@@ -122,13 +122,25 @@ app.post('/posts/:id/comments', async (req, res) => {
 
 //Edit a post
 app.patch('/posts/:id', async function(req, res) {  
-  const authUser = await getAuthUser(req)
-  if(authUser) { 
-  //const postId = req.params.id
+  const postId = req.params.id;
   const description = req.body.description
-  const postDescription = await database.updatePost(description)
-  res.send({postDescription})
+  console.log("post id: " + postId)
+  console.log("post description:: " + description)
+  try {
+    const authUser = await getAuthUser(req)
+    const post = await database.getPost(authUser.Username, postId)
+    console.log(post)
+    if(Object.keys(post).length === 0) {
+      res.status(403).send({error: "Cannot edit"}) 
+  } else {
+      const result = await database.updatePost(authUser.Username, postId, description)
+      console.log("Result: " + JSON.stringify(result))
+      res.send({message: "edited successfully", postId: postId})
   }
+} catch(error) {
+  console.log(error)
+  res.status(500).send(error)
+}   
 });
 
 //Edit a comment
@@ -136,7 +148,7 @@ app.patch('/posts/:id/comments', async function(req, res) {
   const authUser = await getAuthUser(req)
   if(authUser) { 
   const postId = req.params.id 
-  const text = req.body.text
+  const text = req.body.description
   const task = await database.editComment(postId, text)
   res.send({task})
   }

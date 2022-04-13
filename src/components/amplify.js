@@ -75,7 +75,7 @@ export async function editPost(postId, description) {
   const result = await API.patch(apiName,path, {
     body: {description}
   })
-  console.log(result)
+  console.log("EDIT RESULT:" + result)
   return result
 }
 

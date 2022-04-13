@@ -51,12 +51,13 @@ async function getUserWithUsername(username) {
   }
 exports.getUserWithUsername = getUserWithUsername
 
-async function createPost(username, description, imageName) {
+async function createPost(username, description, imageName, postCount) {
   const Item = {
     PK: "USER#" + username,
     SK: "POST#" + ulid(),
     description,
     imageName,
+    postCount,
     created: new Date().toISOString(),   
     commentCount: 0    
   }
@@ -192,25 +193,33 @@ async function deletePost(username, postId) {
         ":inc": 1
     }
   }
-
     const result = await dynamodb.delete(params).promise()
     await dynamodb.update(updateParams).promise()
     return result
-
 }
 exports.deletePost = deletePost
 
-async function updatePost(username, postId) {
+
+async function updatePost(username, postId, description) {
   let params = {
     TableName: tableName,
     Key: {
       PK: "USER#" + username,
       SK: "POST#" + postId
-    }    
-  } 
-  
-  const result = await dynamodb.update(params).promise()  
-  return result;
+    },
+    UpdateExpression: "SET description = :r",
+    ExpressionAttributeValues: {
+        ":r": description
+    },
+    ReturnValues:"UPDATED_NEW"  
+  }   
+  dynamodb.update(params, function(err, data) {
+    if (err) {
+        console.error("Unable to update item. Error JSON:", JSON.stringify(err, null, 2));
+    } else {
+        console.log("UpdateItem succeeded:", JSON.stringify(data, null, 2));
+    }
+});
 }
 
 exports.updatePost = updatePost

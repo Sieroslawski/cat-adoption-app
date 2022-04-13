@@ -17,11 +17,11 @@
       "function": {
         "catPostCats": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
-          "s3Key": "amplify-builds/catPostCats-726a70496e6862434945-build.zip"
+          "s3Key": "amplify-builds/catPostCats-425a7242325a35447674-build.zip"
         },
         "catpostsbackendcatPostDatabase": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",
-          "s3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersion55b56dc1-build.zip"
+          "s3Key": "amplify-builds/catpostsbackendcatPostDatabase-LambdaLayerVersionc5ed631a-build.zip"
         },
         "catpostsbackended39326fPreSignup": {
           "deploymentBucketName": "amplify-catpostsbackend-dev-170800-deployment",

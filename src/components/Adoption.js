@@ -35,21 +35,23 @@ function Adoption() {
   }
 
   const updatePost = async (postId) => {
-    const post = posts.find(item => item.id == postId)
+    const post = posts.find(post => post.id == postId)
     try {
       const updatedPost = await amplify.editPost(postId, updatedDescription[postId])
       post.description = updatedDescription[postId]
-      console.log(updatedPost)
+      console.log("post.description: " + post.description)
+      console.log("updatedPost: " + updatedPost)
       setPosts([...posts])
     } catch (error) {
       console.log(error)
     }
   }
 
-  const showUpdateModal = (postId) => {
+  const showUpdateModal = (postId) => {    
     const oldIsUpdateOpen = isUpdateOpen
     oldIsUpdateOpen[postId] = true
-    setIsUpdateOpen({ ...oldIsUpdateOpen })    
+    setIsUpdateOpen({ ...oldIsUpdateOpen })
+    console.log({...oldIsUpdateOpen})    
   }
   const hideUpdateModal = (postId) => {
     const oldIsUpdateOpen = isUpdateOpen
@@ -75,32 +77,31 @@ function Adoption() {
       <CreatePostForm></CreatePostForm>
       <section>
       {posts.map(post => (
-          <Card variation="elevated" key={post.id} display="flex" flex-direction="column" align-items="center" backgroundColor="azure" className="card">        
-            <p>Username: {post.PK.replace("USER#", "")}</p>
-            <img src={post.imageUrl} alt ="cat-img" className='cat-image'/>
-            <p>Description: {post.description}</p>  
-            <p>Like count: {post.likeCount}</p>
-            <p>Comment count: {post.commentCount}</p>
-            <div className='icons'>                
+          <><Card variation="elevated" key={post.id} display="flex" flex-direction="column" align-items="center" backgroundColor="azure" className="card">
+          <p>Username: {post.PK.replace("USER#", "")}</p>
+          <img src={post.imageUrl} alt="cat-img" className='cat-image' />
+          <p>Description: {post.description}</p>
+          <p>Like count: {post.likeCount}</p>
+          <p>Comment count: {post.commentCount}</p>
+          <div className='icons'>
             <BiEditAlt className='edit-icon' onClick={() => showUpdateModal(post.id)} size="50px"></BiEditAlt>
-            <MdOutlineDeleteForever className='delete-icon' onClick={() => deletePost(post.id)} size="50px">Delete</MdOutlineDeleteForever>         
-            </div>   
-          </Card>        
-        ))}
-
-          <PostModal title="Update the Description" isOpen={isUpdateOpen[post.id]} hideModal={() => hideUpdateModal(post.id)}>
+            <MdOutlineDeleteForever className='delete-icon' onClick={() => deletePost(post.id)} size="50px">Delete</MdOutlineDeleteForever>
+          </div>
+        </Card>
+        <PostModal title="Update description" isOpen={isUpdateOpen[post.id]} hideModal={() => hideUpdateModal(post.id)}>
             <div>
               <div className='img-box'>
-              <img src={post.imageUrl} alt="My pet"></img>
+                <img src={post.imageUrl} alt="My pet"></img>
               </div>
               <TextField label="Description" isMultiline={true}
                 onChange={e => inputDescription(post.id, e)}
                 className='text-field'
-                value={updatedDescription[post.id] || post.description}
-              />
-              <Button type="submit" className="submit-btn" onClick={() => updatePost(post.id)} >Update</Button>
-            </div>           
-          </PostModal>
+                value={updatedDescription[post.id] || post.description} />
+              <Button type="submit" className="submit-btn" onClick={() => updatePost(post.id)}>Update</Button>
+            </div>
+          </PostModal></>     
+        ))}
+         
       </section>
   </div> 
   )
