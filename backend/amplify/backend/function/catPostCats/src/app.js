@@ -73,8 +73,7 @@ app.get('/posts', async (req, res) => {
 
 //Get all comments
 app.get('/posts/:id/comments', async (req, res) => {
-  const postId = req.params.id 
-  
+  const postId = req.params.id   
   try {
     let comments = await database.getComments(postId)
     comments.Items = comments.Items.map(comment => {
@@ -109,6 +108,7 @@ app.post('/posts', async (req, res) => {
 app.post('/posts/:id/comments', async (req, res) => {
   const postId = req.params.id 
   const text = req.body.text
+
   try {
     const authUser = await getAuthUser(req)
     const result = await database.createComment(authUser.Username, postId, text)

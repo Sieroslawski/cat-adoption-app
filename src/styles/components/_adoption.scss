@@ -8,4 +8,69 @@
 
 .cat-image {
     width: 300px;
+    border: 1px solid black;
+}
+
+.app {
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 50px;
+    background-color: antiquewhite;
+    padding: 20px;
+    color: rebeccapurple;
+    margin: 0 auto 0 auto;
+    width: 400px;
+    margin-top: 50px;
+    color: rebeccapurple;
+    border: 5px solid white;
+    border-radius: 10px;
+    box-shadow: 0px 6px 15px -1px #FFFFFF;
+}
+
+/* styles.css */
+.amplify-textfield {
+    --amplify-components-fieldcontrol-border-color: rebeccapurple;
+  }
+
+.amplify-field__description {
+    font-size: 20px!important;
+    color: rebeccapurple!important;
+  }
+
+  .amplify-card[data-variation=elevated] {
+    display: flex;
+    background-color: azure;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 50px!important;
+    background-color: antiquewhite!important;
+    color: rebeccapurple;
+    margin: 0 auto 0 auto;
+    width: 400px;
+    border: 5px solid white!important;
+    border-radius: 10px!important;
+    box-shadow: 0px 6px 15px -1px #FFFFFF!important;
+  }
+
+  .edit-delete-btns {
+      color: black;
+  }
+
+#edit:hover {
+    color: green;
+}
+
+#delete:hover {
+    color: red;
 }

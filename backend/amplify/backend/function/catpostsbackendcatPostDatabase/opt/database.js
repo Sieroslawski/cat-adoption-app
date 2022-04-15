@@ -51,13 +51,12 @@ async function getUserWithUsername(username) {
   }
 exports.getUserWithUsername = getUserWithUsername
 
-async function createPost(username, description, imageName, postCount) {
+async function createPost(username, description, imageName) {
   const Item = {
     PK: "USER#" + username,
     SK: "POST#" + ulid(),
     description,
-    imageName,
-    postCount,
+    imageName,    
     created: new Date().toISOString(),   
     commentCount: 0    
   }
@@ -102,15 +101,14 @@ async function createComment(username, postId, text) {
   let updateParams = {
     TableName: tableName,
     Key: {
-      PK: "USER#" + username,
-      SK: "POST#" + postId,
+      PK: "USER#" + username, //might have to adjust this part
+      SK: "POST#" + postId
     },
     UpdateExpression: "SET commentCount = commentCount+ :inc",
     ExpressionAttributeValues: {
-        ":inc": 1
+      ":inc": 1,
     }
-  }
-
+  }  
   await dynamodb.put(params).promise()
   await dynamodb.update(updateParams).promise()
 

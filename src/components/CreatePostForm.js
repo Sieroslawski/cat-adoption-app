@@ -35,10 +35,11 @@ export default function CreatePostForm() {
 
     return (
     <div className='form'>
+        <h2>Post a cat! 🐱</h2>      
         <form onSubmit={createPost}>
         <input onChange={fileSelected} type="file" accept="image/*"></input>
-        <TextField isMultiline={true} onChange={e => setCatText(e.target.value)} type="text" wrap="nowrap" direction="column" descriptiveText="Enter a post" width="auto"/>           
-        <Button type="submit" className="button">Create Post</Button>    
+        <TextField isMultiline={true} onChange={e => setCatText(e.target.value)} type="text" wrap="nowrap" direction="column" width="auto"/>           
+        <Button type="submit" className="button" disabled={!catText}>Create Post</Button>    
         </form>
     </div>
   )
