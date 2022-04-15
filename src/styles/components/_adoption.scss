@@ -9,10 +9,15 @@
 .cat-image {
     width: 300px;
     border: 1px solid black;
+    margin-left: 10px;
 }
 
-.app {
+.App {
+    background-color: black;
+}
 
+#root {
+    background-color: black;
 }
 
 .form {
@@ -45,15 +50,20 @@
     color: rebeccapurple!important;
   }
 
+  .amplify-button[data-variation=link] {
+      margin-bottom: 10px;
+  }
+
   .amplify-card[data-variation=elevated] {
     display: flex;
     background-color: azure;
     flex-direction: column;
+    flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: stretch;
     margin-top: 50px!important;
+    margin-bottom: 50px!important;
     background-color: antiquewhite!important;
     color: rebeccapurple;
     margin: 0 auto 0 auto;
@@ -65,6 +75,9 @@
 
   .edit-delete-btns {
       color: black;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
   }
 
 #edit:hover {
@@ -73,4 +86,9 @@
 
 #delete:hover {
     color: red;
+}
+
+.username {
+    margin-right: 125px;
+    margin-top: 10px;
 }

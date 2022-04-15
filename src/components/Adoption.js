@@ -117,10 +117,10 @@ function Adoption() {
       {posts.map((post) => <div key={post.id} className="cat-card">
           <><Card variation="elevated" key={post.id} display="flex" flex-direction="column" align-items="center" backgroundColor="azure" className="card">
           <div className='edit-delete-btns'>
+          <p className='username'>Username: {post.PK.replace("USER#", "")}</p>
           <BiEditAlt className='edit-icon' onClick={() => showUpdateModal(post.id)} size="50px" id="edit"></BiEditAlt>
           <MdOutlineDeleteForever className='delete-icon' onClick={() => deletePost(post.id)} size="50px" id="delete">Delete</MdOutlineDeleteForever>
-          </div>
-          <p>Username: {post.PK.replace("USER#", "")}</p>
+          </div>         
           <img src={post.imageUrl} alt="cat-img" className='cat-image' />
           <p>Description: {post.description}</p>         
           <p>Comment count: {post.commentCount}</p>
@@ -147,7 +147,8 @@ function Adoption() {
             </div>                    
           </PostModal>                                 
           <PostModal title="See all comments" isOpen={isOpen[post.id]} hideModal={() => hideModal(post.id)}>
-            {comments[post.id] && comments[post.id].map((comment, index) => 
+          <img src={post.imageUrl} alt="cat-img" className='cat-image' />
+            {comments[post.id] && comments[post.id].map((comment, index) =>
             <><p key={index}>{comment.username}: {comment.text}</p><Divider size="small" /></>
             )}
           </PostModal>           

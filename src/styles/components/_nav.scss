@@ -4,6 +4,16 @@
 
 .header-wrapper {
     @include nav;
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 0;
+      margin-bottom: 0;
+      list-style: none;
+      align-content: center;
+      justify-content: flex-end;
+      align-items: center;
+  }
     background-color: $brand-color;
     height: 8em;
     border-bottom: 1px solid white;
@@ -11,16 +21,16 @@
     font-family: 'Lato', sans-serif;
     font-family: 'Pacifico', cursive;
     ul {
-      float: right;
-      margin: 10px 30px 0px 0px;
-      padding: 0;
+      float: right!important;
+      margin: 10px 30px 0px 0px!important;
+      padding: 0!important;
     }   
    li {
-    list-style-type: none;
-    display: inline;
-    right: 0;    
-    padding: 20px;
-    font-size: 30px;
+    list-style-type: none!important;
+    display: inline!important;
+    right: 0!important;    
+    padding: 20px!important;
+    font-size: 30px!important;
     color: $text-color-light;  
    }
    .icon-and-name {      
@@ -44,49 +54,57 @@
   }   
 }
 
+.footer {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: flex-end;
+}
+
 //Media Queries
 @media only screen and (max-width: 920px) {
   .header-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
+    display: flex!important;
+    flex-direction: column!important;
+    flex-wrap: wrap!important;
+    align-content: center!important;
+    align-items: center!important;
+    justify-content: center!important;
     padding: 10px;   
     li {
-      font-size: 25px;
-      padding: 10px;      
+      font-size: 25px!important;
+      padding: 10px!important;      
     }
     .icon-and-name {
-      margin-left: 5em;
+      margin-left: 5em!important;
       
     }
     .nav {
-      margin-left: 2em;
+      margin-left: 2em!important;
     }
   }
 }
 
 @media only screen and (max-width: 550px) {
   .header-wrapper {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;   
+    display: flex!important;
+    flex-direction: column!important;
+    flex-wrap: wrap!important;
+    align-content: center!important;
+    align-items: center!important;
+    justify-content: center!important;
+    padding: 5px!important;   
     li {
-      font-size: 18px;
-      padding: 10px;      
+      font-size: 18px!important;
+      padding: 10px!important;      
     }
     .icon-and-name {
-      margin-left: 5em;
+      margin-left: 5em!important;
       
     }
     .nav {
-      margin-left: 2em;
+      margin-left: 2em!important;
     }
   }
 }

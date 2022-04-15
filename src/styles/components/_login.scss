@@ -2,6 +2,7 @@
 @use '../utilities/mixins' as *;
 
 .welcome-wrapper {
+    height: 100vh;
     .welcome {
         color: $text-color-light;
     }

@@ -1,6 +1,7 @@
 import React from 'react'
 import Login from '../components/Login';
 import Nav from '../components/Nav'
+import Footer from '../components/Footer';
 
 
 function PageLogin() {
@@ -8,6 +9,7 @@ function PageLogin() {
     <div>
         <Nav/>
         <Login/>
+        <Footer/>
     </div>
   )
 }
