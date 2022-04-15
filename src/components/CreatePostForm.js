@@ -6,13 +6,18 @@ import * as amplify from './amplify'
 export default function CreatePostForm() {
 
     const [catText, setCatText] = useState("")      
-    const [file, setFile] = useState() 
+    const [file, setFile] = useState()
+    const [posts, setPosts] = useState([])
     const [description, setDescription] = useState("")
     const [post, setPost] = useState({})
 
     const fileSelected = event => {
       const file = event.target.files[0]
           setFile(file)    
+      }
+
+      function refreshPage() {
+        window.location.reload(false)
       }
   
     const createPost = async (e) => {        
@@ -21,9 +26,11 @@ export default function CreatePostForm() {
             const post = await amplify.createPost(catText, file)
             const newPost = post
             newPost["imageUrl"] = await amplify.getImage(post.imageName)
-            setPost({...newPost})
-            setDescription(catText)
+            setPost({...newPost})           
+            setPosts([newPost, ...posts])
+            setDescription("")
             console.log("successfully created a cat")
+            refreshPage()
             // redirect to the other page with al the cats or something maybe
             // tell the other ccomponent this was succefssfull
         } catch (error) {
