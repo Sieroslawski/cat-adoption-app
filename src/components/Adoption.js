@@ -4,15 +4,18 @@ import { Button, Card, Divider, TextField, Flex } from '@aws-amplify/ui-react';
 import { useEffect, useState } from 'react'
 import CreatePostForm from './CreatePostForm'
 import PostModal from './PostModal'
+import { Amplify } from 'aws-amplify';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BiEditAlt } from "react-icons/bi";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import awsExports from './aws-exports';
+
+Amplify.configure(awsExports);
 
 function Adoption() {
 
   const [posts, setPosts] = useState([])
   const [post, setPost] = useState({})
-  const [description, setDescription] = useState("")
   const [comment, setComment] = useState({})
   const [comments, setComments] = useState({})
   const [updatedDescription, setUpdatedDescription] = useState({})
@@ -20,14 +23,14 @@ function Adoption() {
   const [isOpen, setIsOpen] = useState({});
   const [isFormOn, setIsFormOn] = useState(false)
   const [text, setText] = useState({})
+  const [result, setResult] = useState({})
 
   useEffect(() => {  
     getPosts()
   }, [])
 
   async function getPosts() {
-    const posts = await amplify.getPosts()
-    console.log(posts)
+    const posts = await amplify.getPosts()   
     setPosts(posts)
   }
 
@@ -75,48 +78,51 @@ function Adoption() {
     setText({...oldText})
   }
 
-  const createComment = async(postId) => {
+  const createComment = async (postId) => {    
     try {
-      const result = await amplify.createComment(postId, text[postId])
+      const result = await amplify.createComment(postId, text[postId])      
       console.log(result)
       const oldComment = comment
       oldComment[postId] = result
       console.log(oldComment)
-      setComment({...oldComment})
-      const post = posts.find(post => post.id == postId)
+      setComment({ ...oldComment })      
+      const post = posts.find(item => item.id == postId)
       post.commentCount += 1
-      setPosts([...posts])
+      setPosts([...posts])    
       setText({})
+     
     } catch {
-      console.log("You cannot comment.")
+      console.log('cannot comment')
     }
   }
 
-  const getComments = async(postId) => {
+
+  const getComments = async (postId) => {
     const result = await amplify.getComments(postId)
+    setResult(result)  
     console.log(result)
     const oldComments = comments
     oldComments[postId] = result
-    setComments({...oldComments})
+    // console.log(oldComments)
+    setComments({ ...oldComments })  
     const oldIsOpen = isOpen
     oldIsOpen[postId] = true
-    setIsOpen({...oldIsOpen})
+    setIsOpen({ ...oldIsOpen })
   }
-
+ 
   const inputDescription = (postId, e) => {
     const oldDescription = updatedDescription
     oldDescription[postId] = e.target.value
     setUpdatedDescription({ ...oldDescription })
   };
 
-  return (
-    
+  return (    
     <div className="App" createOn={() => setIsFormOn(true)} >
       <CreatePostForm></CreatePostForm>
       <section>
       {posts.map((post) => <div key={post.id} className="cat-card">
           <><Card variation="elevated" key={post.id} display="flex" flex-direction="column" align-items="center" backgroundColor="azure" className="card">
-          <div className='edit-delete-btns'>
+          <div className='edit-delete-btns'>        
           <p className='username'>Username: {post.PK.replace("USER#", "")}</p>
           <BiEditAlt className='edit-icon' onClick={() => showUpdateModal(post.id)} size="50px" id="edit"></BiEditAlt>
           <MdOutlineDeleteForever className='delete-icon' onClick={() => deletePost(post.id)} size="50px" id="delete">Delete</MdOutlineDeleteForever>

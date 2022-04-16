@@ -32,7 +32,7 @@ export async function getPosts() {
     const imageUrl = await Storage.get(item.imageName);
     return {
       ...item,
-      imageUrl,
+      imageUrl
     }
   }))
 }

@@ -55,9 +55,8 @@ async function getAuthUser(req) {
 //Get all posts
 app.get('/posts', async (req, res) => {
   // Add your code here
-  try {
-    const authUser = await getAuthUser(req)
-    let posts = await database.getPosts(authUser.Username)
+  try {   
+    let posts = await database.getAllPosts()
     posts.Items = posts.Items.map(post => {
       return {
         ...post,

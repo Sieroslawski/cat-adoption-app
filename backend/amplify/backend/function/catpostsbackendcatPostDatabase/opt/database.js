@@ -97,11 +97,11 @@ async function createComment(username, postId, text) {
     TableName: tableName,
     Item
   }
-
+  
   let updateParams = {
     TableName: tableName,
     Key: {
-      PK: "USER#" + username, //might have to adjust this part
+      PK: "USER#" + username,  //might have to adjust this part
       SK: "POST#" + postId
     },
     UpdateExpression: "SET commentCount = commentCount+ :inc",
@@ -150,6 +150,20 @@ async function getPosts(username) {
   return result
 }
 exports.getPosts = getPosts
+
+async function getAllPosts() {
+  let params = {
+    TableName: tableName,
+    FilterExpression: 'begins_with(SK, :post)',
+    ExpressionAttributeValues: {
+      ':post': 'POST#'
+    },
+  }
+  const result = await dynamodb.scan(params).promise()
+  return result
+}
+
+exports.getAllPosts = getAllPosts
 
 async function getComments(postId) {
   let params = {

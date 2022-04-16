@@ -7,8 +7,7 @@ function PageAdoption() {
   return (
     <div>
         <Nav/>
-        <Adoption/>
-        <Footer/>
+        <Adoption/>       
     </div>
   )
 }
