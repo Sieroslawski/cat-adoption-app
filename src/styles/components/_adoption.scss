@@ -13,8 +13,7 @@
 }
 
 .App {
-    background-color: black;
-    height: 100vh;
+    background-color: black;    
 }
 
 #root {
@@ -75,10 +74,10 @@
   }
 
   .edit-delete-btns {
-      color: black;
+      color: black;      
       display: flex;
       flex-wrap: wrap;
-      justify-content: flex-end;
+      justify-content: center;
   }
 
 #edit:hover {
@@ -92,4 +91,8 @@
 .username {
     margin-right: 125px;
     margin-top: 10px;
+}
+
+.cat-card {
+    margin-bottom: 50px!important;
 }

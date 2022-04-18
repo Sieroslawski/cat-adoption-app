@@ -86,11 +86,11 @@ function Adoption() {
       oldComment[postId] = result
       console.log(oldComment)
       setComment({ ...oldComment })      
-      const post = posts.find(item => item.id == postId)
+      const post = posts.find(post => post.id == postId)
       post.commentCount += 1
+      console.log("COMMENT COUNT: " + post.commentCount);
       setPosts([...posts])    
-      setText({})
-     
+      setText({})     
     } catch {
       console.log('cannot comment')
     }
@@ -101,8 +101,9 @@ function Adoption() {
     const result = await amplify.getComments(postId)
     setResult(result)  
     console.log(result)
-    const oldComments = comments
+    const oldComments = comments   
     oldComments[postId] = result
+    console.log("old comments: " + oldComments[postId])
     // console.log(oldComments)
     setComments({ ...oldComments })  
     const oldIsOpen = isOpen
@@ -123,7 +124,7 @@ function Adoption() {
       {posts.map((post) => <div key={post.id} className="cat-card">
           <><Card variation="elevated" key={post.id} display="flex" flex-direction="column" align-items="center" backgroundColor="azure" className="card">
           <div className='edit-delete-btns'>        
-          <p className='username'>Username: {post.PK.replace("USER#", "")}</p>
+          <p className='username'>User: {post.PK.replace("USER#", "")}</p>
           <BiEditAlt className='edit-icon' onClick={() => showUpdateModal(post.id)} size="50px" id="edit"></BiEditAlt>
           <MdOutlineDeleteForever className='delete-icon' onClick={() => deletePost(post.id)} size="50px" id="delete">Delete</MdOutlineDeleteForever>
           </div>         

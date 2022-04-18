@@ -97,18 +97,29 @@ async function createComment(username, postId, text) {
     TableName: tableName,
     Item
   }
-  
+
+  let scanParams = {
+    TableName: tableName,
+    IndexName: invertIndex,
+    FilterExpression: 'SK = :c',
+    ExpressionAttributeValues: {
+      ':c': "POST#" + postId,
+    }
+  }
+  const result = await dynamodb.scan(scanParams).promise()
+
   let updateParams = {
     TableName: tableName,
     Key: {
-      PK: "USER#" + username,  //might have to adjust this part
-      SK: "POST#" + postId
+        PK: result.Items[0].PK,
+        SK: "POST#" + postId,
     },
     UpdateExpression: "SET commentCount = commentCount+ :inc",
     ExpressionAttributeValues: {
-      ":inc": 1,
+        ":inc": 1,
     }
-  }  
+  }
+
   await dynamodb.put(params).promise()
   await dynamodb.update(updateParams).promise()
 
